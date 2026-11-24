@@ -1,0 +1,152 @@
+/* Stijl van de homepage (index.html) */
+
+:root {
+  --accent: #8e1b22;
+  --accent-dark: #6e1318;
+  --ink: #1a1a1a;
+  --ink-soft: #444;
+  --muted: #666;
+  --bg: #ffffff;
+  --bg-2: #f5f3f0;
+  --line: #e3e0dc;
+  --radius: 4px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+}
+img { max-width: 100%; display: block; }
+a { color: var(--accent); }
+a:hover { color: var(--accent-dark); }
+h1, h2, h3 { font-family: "Zilla Slab", Georgia, serif; font-weight: 600; margin: 0; line-height: 1.15; }
+p { margin: 0; }
+.wrap { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+.muted { color: var(--muted); }
+
+/* Knoppen */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 46px; padding: 11px 22px; border-radius: var(--radius);
+  font-weight: 600; text-decoration: none; border: 1px solid transparent;
+  transition: background .15s, color .15s;
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-dark); color: #fff; }
+.btn-outline { border-color: var(--ink); color: var(--ink); }
+.btn-outline:hover { background: var(--ink); color: #fff; }
+.btn-light { background: transparent; color: #fff; border-color: #777; }
+.btn-light:hover { background: #fff; color: var(--ink); }
+.buttons { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* Header */
+header { position: sticky; top: 0; z-index: 10; background: #fff; border-bottom: 1px solid var(--line); }
+nav { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; padding: 14px 0; }
+.logo { font-family: "Zilla Slab", Georgia, serif; font-weight: 700; font-size: 30px; color: var(--ink); text-decoration: none; line-height: 1; }
+.logo small { display: block; font-family: "Source Sans 3", sans-serif; font-weight: 600; font-size: 13px; color: var(--accent); margin-top: 3px; }
+.menu { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 24px; font-size: 16px; }
+.menu a:not(.btn) { color: var(--ink-soft); text-decoration: none; }
+.menu a:not(.btn):hover { color: var(--accent); }
+
+/* 1. Hero: tekst links, foto van het bord rechts */
+.hero { background: var(--ink); color: #fff; padding: 64px 0; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 56px; align-items: center; }
+.hero-text { display: flex; flex-direction: column; gap: 20px; }
+.kicker { color: #bdbdbd; font-size: 15px; }
+.hero h1 { font-size: 54px; }
+.hero .lead { font-size: 19px; color: #dcdcdc; max-width: 520px; }
+.hero-img { width: 100%; max-width: 440px; height: 520px; object-fit: cover; border-radius: var(--radius); justify-self: end; }
+
+/* 2. Infobalk */
+.infobar { border-bottom: 1px solid var(--line); }
+.info-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.info-grid > div { padding: 26px 24px; border-left: 1px solid var(--line); }
+.info-grid > div:first-child { border-left: 0; padding-left: 0; }
+.info-title { font-weight: 700; margin-bottom: 4px; }
+.info-grid p:not(.info-title) { color: var(--muted); }
+.info-grid a { display: inline-block; margin-top: 6px; font-weight: 600; text-decoration: none; }
+
+/* Secties */
+section { padding: 80px 0; }
+.band { background: var(--bg-2); }
+h2 { font-size: 38px; margin-bottom: 14px; }
+.section-head { max-width: 620px; margin-bottom: 32px; }
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; }
+.split.top { align-items: start; }
+
+/* 3. De winkel */
+.shop-img { width: 100%; max-width: 560px; aspect-ratio: 16 / 10; object-fit: cover; object-position: center top; border-radius: var(--radius); }
+.checks { list-style: none; margin: 22px 0 0; padding: 0; }
+.checks li { padding: 10px 0 10px 30px; border-bottom: 1px solid var(--line); position: relative; }
+.checks li::before { content: ""; position: absolute; left: 4px; top: 17px; width: 10px; height: 6px; border-left: 2px solid var(--accent); border-bottom: 2px solid var(--accent); transform: rotate(-45deg); }
+
+/* 4. Aanbod */
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: start; }
+.cat-card { background: #fff; border: 1px solid var(--line); border-top: 3px solid var(--accent); border-radius: var(--radius); padding: 20px 22px; }
+.cat-card h3 { font-size: 22px; margin-bottom: 8px; }
+.price-list { list-style: none; margin: 0; padding: 0; }
+.price-list li { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0; border-bottom: 1px dotted var(--line); font-size: 16px; }
+.price-list li:last-child { border-bottom: 0; }
+.price-list li.out span { color: #a3a3a3; }
+.price-list li.out > span:first-child { text-decoration: line-through; }
+.badge { display: inline-block; margin-left: 8px; padding: 0 7px; border-radius: 3px; background: #f9e1e2; color: var(--accent-dark) !important; font-size: 12px; font-weight: 700; text-decoration: none; vertical-align: 1px; }
+.price-list li span:last-child { color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.hint { margin-top: 18px; font-size: 14px; color: var(--muted); }
+.more { margin-top: 12px; font-weight: 600; }
+.more a { text-decoration: none; }
+
+/* 5. Stappen */
+.steps { list-style: none; counter-reset: stap; margin: 0 0 32px; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.steps li { counter-increment: stap; border-top: 1px solid var(--line); padding-top: 20px; color: var(--muted); }
+.steps li strong { display: block; color: var(--ink); font-size: 19px; margin-bottom: 4px; }
+.steps li::before {
+  content: counter(stap); display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; margin-bottom: 14px; border-radius: 50%;
+  background: var(--accent); color: #fff; font-weight: 700;
+}
+
+/* 6. Openingsuren en contact */
+.hours { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid var(--line); }
+.hours th, .hours td { padding: 11px 16px; border-bottom: 1px solid var(--line); text-align: left; font-weight: 400; }
+.hours td { text-align: right; font-variant-numeric: tabular-nums; }
+.hours .closed { color: var(--accent); font-weight: 600; }
+address { font-style: normal; margin-bottom: 20px; }
+address a { font-weight: 600; text-decoration: none; }
+.map { width: 100%; height: 260px; border: 1px solid var(--line); border-radius: var(--radius); }
+
+/* Footer */
+footer { background: var(--ink); color: #bdbdbd; font-size: 15px; }
+footer a { color: #e6e6e6; text-decoration: none; display: block; margin-bottom: 6px; }
+footer a:hover { color: #fff; }
+.footer-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 28px; padding-top: 48px; padding-bottom: 36px; }
+.footer-logo { font-family: "Zilla Slab", Georgia, serif; font-size: 26px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+.footer-title { color: #fff; font-weight: 700; margin-bottom: 10px; }
+.footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; border-top: 1px solid #383838; padding-top: 18px; padding-bottom: 22px; font-size: 13px; color: #8f8f8f; }
+
+/* Tablet */
+@media (max-width: 960px) {
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Gsm */
+@media (max-width: 760px) {
+  body { font-size: 16px; }
+  section { padding: 56px 0; }
+  .hero { padding: 40px 0; }
+  .hero-grid, .split, .steps, .info-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .hero h1 { font-size: 38px; }
+  .hero-img { max-width: none; height: 340px; justify-self: stretch; }
+  .shop-img { max-width: none; }
+  h2 { font-size: 30px; }
+  .info-grid { gap: 0; }
+  .info-grid > div { border-left: 0; border-top: 1px solid var(--line); padding: 20px 0; }
+  .info-grid > div:first-child { border-top: 0; }
+  .grid { grid-template-columns: minmax(0, 1fr); }
+  nav { justify-content: center; }
+  .menu { justify-content: center; gap: 8px 18px; }
+}

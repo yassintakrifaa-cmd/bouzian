@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Online bestellen – Butcher Bouzian</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="index.html">Bouzian<small>Halal slagerij</small></a>
+    <nav class="nav">
+      <a href="bestellen.html" aria-current="page">Bestellen</a>
+      <a href="account.html">Mijn account</a>
+      <a href="index.html">Website</a>
+    </nav>
+  </div>
+</header>
+<div class="demo-note">Voorlopige prijzen: de definitieve prijzen worden nog aangevuld.</div>
+
+<main class="wrap">
+  <section id="shop">
+    <div class="title">
+      <h1>Online bestellen</h1>
+      <p>Bestel vooraf en haal op in de winkel. Betalen gebeurt bij het afhalen.</p>
+    </div>
+    <div class="layout">
+      <div class="panel" id="productList"></div>
+
+      <form class="panel summary" id="orderForm" novalidate>
+        <h2>Uw bestelling</h2>
+        <div class="account-box" id="klantInfo"></div>
+        <div class="lines" id="lines"><p class="hint">Nog niets gekozen.</p></div>
+        <div class="total"><span>Geschat totaal</span><span id="total">€0,00</span></div>
+        <p class="hint">Alles wordt in de winkel afgewogen. De uiteindelijke prijs kan licht afwijken.</p>
+        <div class="row2">
+          <label>Ophaaldag<select id="day"></select></label>
+          <label>Uur<select id="time"></select></label>
+        </div>
+        <label>Naam<input id="name" autocomplete="name"></label>
+        <label>Telefoon<input id="phone" type="tel" autocomplete="tel"></label>
+        <label>E-mailadres<input id="email" type="email" autocomplete="email"></label>
+        <p class="hint">Hierop ontvangt u de bevestiging met uw bestelnummer.</p>
+        <label>Opmerking (optioneel)<textarea id="note" placeholder="bv. in blokjes snijden"></textarea></label>
+        <p class="err" id="err" aria-live="polite"></p>
+        <button class="btn" type="submit">Bestelling plaatsen</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="panel done" id="done" hidden>
+    <h2>Bestelling ontvangen</h2>
+    <div class="code-box">
+      <span>Bestelnummer</span>
+      <p id="doneCode" class="code"></p>
+    </div>
+    <p id="doneText"></p>
+    <div class="actions">
+      <button class="btn" type="button" id="again">Nieuwe bestelling</button>
+      <a class="btn ghost" href="account.html" id="doneAccount" hidden>Bekijk in Mijn account</a>
+    </div>
+  </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/config.js"></script>
+<script src="js/producten.js"></script>
+<script src="js/helpers.js"></script>
+<script src="js/database.js"></script>
+<script src="js/opslag.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/mail.js"></script>
+<script src="js/bestellen.js"></script>
+</body>
+</html>

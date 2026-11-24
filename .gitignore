@@ -1,0 +1,6 @@
+# Niet op GitHub zetten
+.vscode/
+.claude/settings.local.json
+Thumbs.db
+desktop.ini
+.DS_Store

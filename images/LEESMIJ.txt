@@ -1,0 +1,6 @@
+Eigen foto's van de zaak.
+
+winkel-toonbank.jpg   De toonbank (homepage, blok "Onze winkel")
+bouzian-bord.jpg      Hangende worst met het Bouzian-bord (homepage, bovenaan)
+
+Tip: gebruik foto's van minstens 1200 pixels breed, dan blijven ze scherp.

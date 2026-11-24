@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Bestellingen – Butcher Bouzian</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/app.css">
+</head>
+<body>
+
+<header class="admin">
+  <div class="wrap">
+    <a class="logo" href="../index.html">Bouzian<small>Beheer</small></a>
+    <button class="btn small ghost" type="button" id="logout">Uitloggen</button>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="title">
+    <h1>Bestellingen</h1>
+    <p>Nieuwe bestellingen staan bovenaan. De lijst vernieuwt elke 30 seconden vanzelf.</p>
+  </div>
+
+  <div class="stats" id="stats"></div>
+
+  <div class="toolbar">
+    <div class="tabs" role="group" aria-label="Onderdeel">
+      <button type="button" id="tOrders" aria-pressed="true">Bestellingen</button>
+      <button type="button" id="tProducts" aria-pressed="false">Producten &amp; uitverkocht</button>
+    </div>
+    <label id="searchBox">Zoek op bestelnummer of naam<input id="search" placeholder="bv. BZ-1001 of 1001"></label>
+  </div>
+
+  <section id="ordersSection">
+    <div id="ordersView" class="orders"></div>
+  </section>
+
+  <section id="productsView" class="panel" hidden></section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/config.js"></script>
+<script src="../js/producten.js"></script>
+<script src="../js/helpers.js"></script>
+<script src="../js/database.js"></script>
+<script src="../js/opslag.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/slager.js"></script>
+</body>
+</html>
