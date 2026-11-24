@@ -9,9 +9,8 @@ Halal slagerij, Weerstandlaan 46, 2660 Antwerpen.
 bouzian/
 ├── index.html            Homepage (info, aanbod, openingsuren, contact)
 ├── bestellen.html        Bestelpagina voor klanten
-├── account.html          Klantaccount: inloggen, registreren, eigen bestellingen
+├── account.html          Inloggen (kant klanten + kant personeel), klantaccount
 ├── slager/
-│   ├── login.html        Inloggen voor de slager
 │   └── index.html        Slagersscherm: bestellingen + uitverkocht
 ├── css/
 │   ├── style.css         Stijl van de homepage
@@ -26,8 +25,7 @@ bouzian/
 │   ├── auth.js           Inloggen klant én slager (Supabase Auth)
 │   ├── mail.js           Bevestigingsmail naar de klant (nog niet actief)
 │   ├── bestellen.js      Logica van de bestelpagina
-│   ├── login.js          Logica van de loginpagina (slager)
-│   ├── account.js        Logica van het klantaccount
+│   ├── account.js        Logica van de inlogpagina en het klantaccount
 │   └── slager.js         Logica van het slagersscherm
 └── images/               Eigen foto's van de zaak
 ```
@@ -48,8 +46,8 @@ bouzian/
 1. Open deze map: **File → Open Folder**.
 2. Installeer de extensie **Live Server** (VS Code stelt dit zelf voor).
 3. Rechtsklik op `index.html` → **Open with Live Server**.
-4. Slagersscherm: ga naar `/slager/login.html` en log in met een account dat
-   de rol `slager` heeft (zie hieronder).
+4. Slagersscherm: ga naar `account.html` en log in aan de kant **Personeel**
+   met een personeelsaccount (zie hieronder).
 
 Een fout? Druk in de browser op **F12** → tabblad **Console**. Daar staat welk
 bestand en welke regel het probleem geeft.
@@ -62,7 +60,7 @@ bestand en welke regel het probleem geeft.
    Het nummer maakt de database; het voorvoegsel `BZ-` staat in `config.js`.
 3. Klanten kunnen (hoeft niet) een account maken op `account.html` → `auth.js`.
    Ingelogd worden naam en telefoon vooraf ingevuld en zien ze hun bestellingen
-   met de status. De slager logt in via `slager/login.html` → `auth.js`.
+   met de status. Personeel logt in op dezelfde pagina, kant **Personeel**.
 4. `slager.js` haalt de bestellingen op uit `opslag.js` en toont ze.
 5. Zet de slager iets op uitverkocht, dan bewaart `opslag.js` dat, en
    `bestellen.js` toont het product grijs.
@@ -82,9 +80,16 @@ Beveiliging (RLS): iedereen mag bestellen (ook gasten), een klant ziet alleen
 zijn eigen bestellingen, alleen een slager ziet alles en mag status en
 uitverkocht aanpassen.
 
-**Iemand slager maken:** maak eerst een gewoon account op `account.html`. Ga dan
-in Supabase naar **Table Editor → profiles**, zoek die persoon en zet `rol` op
-`slager`. Daarna kan die inloggen op `slager/login.html`.
+**Personeelsaccounts (bv. baas en werknemer):** op de website kan niemand een
+personeelsaccount maken. Dat gebeurt alleen in Supabase:
+
+1. **Authentication → Users → Add user → Create new user**: e-mail + wachtwoord,
+   vink *Auto Confirm User* aan.
+2. **Table Editor → profiles**: zoek die persoon en zet `rol` op `slager`.
+3. Inloggen op `account.html`, kant **Personeel**.
+
+Iemand die geen personeel meer is: zet `rol` terug op `klant`, of verwijder de
+gebruiker bij **Authentication → Users**.
 
 ## Bevestigingsmail
 

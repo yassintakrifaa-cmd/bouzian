@@ -110,7 +110,7 @@
   $('tProducts').addEventListener('click', () => tab('products'));
   $('logout').addEventListener('click', async () => {
     await Bouzian.auth.uitloggen();
-    window.location.href = 'login.html';
+    window.location.href = '../account.html#personeel';
   });
 
   // ---------- Start ----------

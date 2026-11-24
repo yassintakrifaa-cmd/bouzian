@@ -1,4 +1,6 @@
-// KLANTACCOUNT (account.html): inloggen, account maken en eigen bestellingen bekijken.
+// INLOGGEN & ACCOUNT (account.html)
+// Links: klanten (inloggen of account maken). Rechts: personeel (alleen inloggen).
+// Ingelogd als klant: eigen gegevens en bestellingen. Ingelogd als slager: door naar het slagersscherm.
 (function () {
   const { $, euro, esc } = Bouzian.helpers;
   const auth = Bouzian.auth;
@@ -44,6 +46,10 @@
   // ---------- Juiste scherm tonen ----------
   async function toon() {
     const klant = await auth.huidigeKlant();
+    if (klant && klant.rol === 'slager') {
+      window.location.href = 'slager/index.html';
+      return;
+    }
     $('loginView').hidden = !!klant;
     $('accountView').hidden = !klant;
     if (!klant) return;
@@ -104,6 +110,35 @@
     naInloggen();
   });
 
+  // ---------- Personeel ----------
+  $('staffForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    const email = $('staffEmail').value;
+    const wachtwoord = $('staffPass').value;
+    if (!email.trim() || !wachtwoord) {
+      $('staffErr').textContent = 'Vul uw e-mailadres en wachtwoord in.';
+      return;
+    }
+    const fout = await bezig($('staffForm'), 'Bezig…', () => auth.inloggenSlager(email, wachtwoord));
+    if (!fout) {
+      window.location.href = 'slager/index.html';
+    } else {
+      $('staffErr').textContent = fout;
+      $('staffPass').value = '';
+      $('staffPass').focus();
+    }
+  });
+
+  // ---------- Wisselen tussen inloggen en account maken ----------
+  function wissel(registreren) {
+    $('loginForm').hidden = registreren;
+    $('regForm').hidden = !registreren;
+    $(registreren ? 'regName' : 'loginEmail').focus();
+  }
+  $('naarRegistreren').addEventListener('click', () => wissel(true));
+  $('naarInloggen').addEventListener('click', () => wissel(false));
+
+  ['staffEmail', 'staffPass'].forEach(id => $(id).addEventListener('input', () => { $('staffErr').textContent = ''; }));
   ['loginEmail', 'loginPass'].forEach(id => $(id).addEventListener('input', () => { $('loginErr').textContent = ''; }));
   ['regName', 'regEmail', 'regPhone', 'regPass'].forEach(id => $(id).addEventListener('input', () => { $('regErr').textContent = ''; }));
 

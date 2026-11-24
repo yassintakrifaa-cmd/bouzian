@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mijn account – Butcher Bouzian</title>
+<title>Inloggen – Butcher Bouzian</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
@@ -26,27 +26,47 @@
   <!-- Niet ingelogd: inloggen of account maken -->
   <section id="loginView">
     <div class="title">
-      <h1>Mijn account</h1>
-      <p>Log in om uw bestellingen en hun status te bekijken.</p>
+      <h1>Inloggen</h1>
+      <p>Kies of u klant bent of bij Bouzian werkt.</p>
     </div>
     <div class="auth-grid">
-      <form class="panel form" id="loginForm" novalidate>
-        <h2>Inloggen</h2>
-        <label>E-mailadres<input id="loginEmail" type="email" autocomplete="email"></label>
-        <label>Wachtwoord<input id="loginPass" type="password" autocomplete="current-password"></label>
-        <p class="err" id="loginErr" aria-live="polite"></p>
-        <button class="btn" type="submit">Inloggen</button>
-      </form>
+      <!-- Kant 1: klanten (inloggen of zelf een account maken) -->
+      <div class="panel side">
+        <p class="side-label">Klanten</p>
 
-      <form class="panel form" id="regForm" novalidate>
-        <h2>Nieuw account</h2>
-        <label>Naam<input id="regName" autocomplete="name"></label>
-        <label>E-mailadres<input id="regEmail" type="email" autocomplete="email"></label>
-        <label>Telefoon<input id="regPhone" type="tel" autocomplete="tel"></label>
-        <label>Wachtwoord (min. 6 tekens)<input id="regPass" type="password" autocomplete="new-password"></label>
-        <p class="err" id="regErr" aria-live="polite"></p>
-        <button class="btn ghost" type="submit">Account aanmaken</button>
-      </form>
+        <form class="form" id="loginForm" novalidate>
+          <h2>Inloggen als klant</h2>
+          <label>E-mailadres<input id="loginEmail" type="email" autocomplete="email"></label>
+          <label>Wachtwoord<input id="loginPass" type="password" autocomplete="current-password"></label>
+          <p class="err" id="loginErr" aria-live="polite"></p>
+          <button class="btn" type="submit">Inloggen</button>
+          <p class="hint">Nog geen account? <button class="link" type="button" id="naarRegistreren">Maak een account aan</button></p>
+        </form>
+
+        <form class="form" id="regForm" novalidate hidden>
+          <h2>Nieuw klantaccount</h2>
+          <label>Naam<input id="regName" autocomplete="name"></label>
+          <label>E-mailadres<input id="regEmail" type="email" autocomplete="email"></label>
+          <label>Telefoon<input id="regPhone" type="tel" autocomplete="tel"></label>
+          <label>Wachtwoord (min. 6 tekens)<input id="regPass" type="password" autocomplete="new-password"></label>
+          <p class="err" id="regErr" aria-live="polite"></p>
+          <button class="btn" type="submit">Account aanmaken</button>
+          <p class="hint">Al een account? <button class="link" type="button" id="naarInloggen">Log in</button></p>
+        </form>
+      </div>
+
+      <!-- Kant 2: personeel (alleen inloggen, accounts maakt de zaak zelf aan) -->
+      <div class="panel side staff" id="personeel">
+        <p class="side-label">Personeel</p>
+        <form class="form" id="staffForm" novalidate>
+          <h2>Inloggen als slager</h2>
+          <p class="hint">Alleen voor medewerkers van Bouzian. Hier kunt u geen account aanmaken: personeelsaccounts worden door de zaak beheerd.</p>
+          <label>E-mailadres<input id="staffEmail" type="email" autocomplete="username"></label>
+          <label>Wachtwoord<input id="staffPass" type="password" autocomplete="current-password"></label>
+          <p class="err" id="staffErr" aria-live="polite"></p>
+          <button class="btn dark" type="submit">Naar het slagersscherm</button>
+        </form>
+      </div>
     </div>
   </section>
 

@@ -1,8 +1,10 @@
 // INLOGGEN voor klanten én voor de slager, via Supabase Auth.
 //
 // Iedereen logt in met e-mail + wachtwoord. In de tabel `profiles` staat per
-// gebruiker de rol: 'klant' (standaard) of 'slager'. Iemand slager maken doe je
-// in Supabase: Table Editor → profiles → rol op 'slager' zetten.
+// gebruiker de rol: 'klant' (standaard) of 'slager'.
+// Klanten maken zelf een account. Personeelsaccounts (bv. baas en werknemer)
+// worden alleen in Supabase aangemaakt en daar op rol 'slager' gezet. Niemand
+// kan zichzelf slager maken: de database laat dat niet toe.
 //
 // De functies met `async` praten met de server: gebruik ze met `await`.
 window.Bouzian = window.Bouzian || {};
@@ -39,7 +41,11 @@ window.Bouzian = window.Bouzian || {};
       const { data, error } = await db.auth.signUp({
         email: email.trim().toLowerCase(),
         password: wachtwoord,
-        options: { data: { naam: naam.trim(), telefoon: telefoon.trim() } }
+        options: {
+          data: { naam: naam.trim(), telefoon: telefoon.trim() },
+          // De link in de bevestigingsmail brengt de klant terug naar deze inlogpagina
+          emailRedirectTo: new URL('account.html', window.location.href).href
+        }
       });
       if (error) return { ok: false, fout: vertaal(error) };
       if (!data.session) {
@@ -76,10 +82,10 @@ window.Bouzian = window.Bouzian || {};
       return 'Dit account heeft geen toegang tot het slagersscherm.';
     },
 
-    // Bovenaan het slagersscherm: geen slager? Terug naar de login.
+    // Bovenaan het slagersscherm: geen slager? Terug naar de inlogpagina (kant personeel).
     async vereisSlager() {
       if (await this.isSlager()) return true;
-      window.location.href = 'login.html';
+      window.location.href = '../account.html#personeel';
       return false;
     }
   };
